@@ -1,5 +1,8 @@
 .content {
   display: flex;
+  @media only screen and (max-width: $sb-medium) {
+    flex-direction: column;
+  }
 }
 .detail {
   font-size: 1.4rem;
@@ -7,6 +10,14 @@
   padding: 4.5rem;
   background-color: var(--color-grey-light--1);
   border-bottom: $line;
+
+  @media only screen and (max-width: $sb-medium) {
+    padding: 2rem;
+  }
+
+  @media only screen and (max-width: $sb-small) {
+    flex-direction: column;
+  }
 }
 
 .description {
@@ -16,6 +27,16 @@
   padding: 3rem;
   flex: 0 0 60%;
   margin-right: 4.5rem;
+
+  @media only screen and (max-width: $sb-medium) {
+    padding: 1rem;
+    margin-right: 3rem;
+  }
+
+  @media only screen and (max-width: $sb-small) {
+    margin-bottom: 3rem;
+    margin-right: 0;
+  }
 }
 
 .list {
@@ -26,6 +47,7 @@
   list-style: none;
   margin: 3rem 0;
   padding: 3rem 0;
+
   &__item {
     flex: 0 0 50%;
     margin-bottom: 0.7rem;
@@ -38,9 +60,14 @@
       margin-right: 0.7rem;
       // background-image: url(/img/SVG/chevron-thin-right.svg);
       // background-size: cover;
-      background-color: var(--color-primary);
-      -webkit-mask-image: url(/img/SVG/chevron-thin-right.svg);
-      -webkit-mask-size: cover;
+
+      @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+        background-color: var(--color-primary);
+        -webkit-mask-image: url(/img/SVG/chevron-thin-right.svg);
+        -webkit-mask-size: cover;
+        mask-image: url(/img/SVG/chevron-thin-right.svg);
+        mask-size: cover;
+      }
     }
   }
 }
@@ -63,7 +90,7 @@
     border: solid 0.3rem #fff;
 
     &:not(:first-child) {
-      margin-left: -3.5rem;
+      margin-left: -4.5rem;
     }
   }
 }
